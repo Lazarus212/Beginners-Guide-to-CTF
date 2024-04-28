@@ -3,7 +3,7 @@
     >Beginners Guide to CTF
     <nav mat-tab-nav-bar [tabPanel]="tabNavPanel" class="nav-tab">
       @for (route of routes; track route) {
-        <a mat-tab-link [routerLink]="route.route" (click)="activeLink = route" [active]="activeLink === route">{{ route.label }}</a>
+        <a mat-tab-link [routerLink]="route.route" [active]="activeLink === '/' + route.route">{{ route.label }}</a>
       }
     </nav>
   </mat-toolbar>

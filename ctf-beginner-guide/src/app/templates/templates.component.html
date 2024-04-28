@@ -1,3 +1,23 @@
-<button mat-raised-button (click)="clickButton()">Test</button>
-
-<md-editor [(ngModel)]="template"></md-editor>
+<ng-container *ngIf="reflist$ | async as references">
+  <table mat-table [dataSource]="references">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef>Date</th>
+      <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="clickFetchButton(row)"></tr>
+  </table>
+</ng-container>
+<ng-container *ngIf="!(reflist$ | async)">
+  <mat-card>
+    <mat-card-header>No data available!</mat-card-header>
+  </mat-card>
+</ng-container>
+<br />
+<ng-container *ngIf="template">
+  <md-editor [(ngModel)]="template.content"></md-editor>
+</ng-container>
