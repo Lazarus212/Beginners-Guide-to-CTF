@@ -1,0 +1,1 @@
+import{Bb as r,Fb as s,da as o,ob as a,pb as i}from"./chunk-EGEUJUEH.js";var c=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=o({type:e,selectors:[["app-templates"]],standalone:!0,features:[s],decls:2,vars:0,template:function(n,m){n&1&&(a(0,"p"),r(1,"templates works!"),i())}});let t=e;return t})();export{c as TemplatesComponent};

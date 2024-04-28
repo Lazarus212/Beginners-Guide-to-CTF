@@ -1,1 +1,0 @@
-import{$a as i,aa as a,ab as o,ob as r,qb as s}from"./chunk-NR2LHSNQ.js";var l=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=a({type:e,selectors:[["app-landingpage"]],standalone:!0,features:[s],decls:2,vars:0,template:function(n,c){n&1&&(i(0,"span"),r(1,"Test"),o())}});let t=e;return t})();export{l as LandingpageComponent};
