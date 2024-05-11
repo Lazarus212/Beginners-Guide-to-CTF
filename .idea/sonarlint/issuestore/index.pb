@@ -7,3 +7,5 @@ X
 (ctf-beginner-guide/src/app/app.routes.ts,d\a\daf67142948cddbaf1332e4fcfbfd7f8194131f4
 X
 (ctf-beginner-guide/src/app/app.config.ts,6\d\6de6d3fa18731be7d2e9e38013ebcd90ab10a084
+k
+;ctf-beginner-guide/src/app/templates/templates.component.ts,5\f\5f3c52b9100100135511fba81fe9c3813beb75ec
