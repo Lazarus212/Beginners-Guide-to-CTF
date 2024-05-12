@@ -1,0 +1,12 @@
+on:
+  push:
+    branches:
+    - gh-pages
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+    
