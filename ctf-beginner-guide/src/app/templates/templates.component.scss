@@ -2,3 +2,19 @@
 background-color: lightgray;
   cursor: pointer;
 }
+
+.add-button{
+  transform: scale(65%);
+}
+.margin-left-table{
+margin-left: 30px;
+  width: 48%;
+}
+
+::ng-deep .mdc-data-table__table{
+  min-width: 48% !important
+}
+.add-formfield{
+  margin-left: 20px;
+  transform: scale(90%);
+}

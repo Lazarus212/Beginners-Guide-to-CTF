@@ -1,12 +1,8 @@
 import { inject, Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable, Subject } from "rxjs";
-
-export type Template = {
-  title: string;
-  date: string;
-  content: string;
-};
+import {BehaviorSubject, Observable, Subject} from "rxjs";
+import {GH_Template} from "../templates/templates.types";
+import {environment} from "../../environments/environment";
 
 export type TemplateReference = {
   name: string;
@@ -20,59 +16,44 @@ export class TemplateService {
   private http: HttpClient = inject(HttpClient);
   private storedReflist: TemplateReference[] = [];
   reflist$: Subject<TemplateReference[]> = new Subject<TemplateReference[]>();
-  templates$: Subject<Template> = new Subject<Template>();
+  private singeTemplate$: Subject<GH_Template>= new Subject<GH_Template>();
+  templates$: BehaviorSubject<GH_Template[]> = new BehaviorSubject<GH_Template[]>([]);
 
-  loadTemplate(name: string) {
-    this.http
-      .get<Template>("https://beginners-guide-for-ctf-default-rtdb.europe-west1.firebasedatabase.app/" + name + ".json")
-      .subscribe(data => {
-        this.templates$.next(data);
-      });
+  private baseUrlTemplates = `${environment.baseURL}/${environment.owner}/${environment.repo}/contents/datastorage/templates`
+
+
+  loadTemplates(){
+    this.http.get<GH_Template[]>(this.baseUrlTemplates).subscribe((templates)=>{
+      this.templates$.next(templates)
+    });
   }
 
-  addTemplate(name: string, template: string) {
-    const newTemplate: Template = {
-      title: name,
-      date: new Date().toISOString(),
-      content: template,
-    };
-    this.http
-      .put<string>(
-        "https://beginners-guide-for-ctf-default-rtdb.europe-west1.firebasedatabase.app/" + newTemplate.title + ".json",
-        newTemplate
-      )
-      .subscribe(data => {
-        this.storedReflist.push({ name: data, date: newTemplate.date });
-        this.updateRefList();
-      });
+  loadSingleTemplate(name:string){
+    this.http.get<GH_Template>(`${this.baseUrlTemplates}/${name}.md`).subscribe((template)=>{
+      this.singeTemplate$.next(template)
+    });
   }
 
-  private updateRefList() {
-    this.http
-      .put(
-        "https://beginners-guide-for-ctf-default-rtdb.europe-west1.firebasedatabase.app/reflist.json",
-        this.storedReflist
-      )
-      .subscribe(() => {
-        this.loadReflist();
-      });
+
+  addTemplate(name:string) {
+    const newTemplate = {
+      name: name,
+      content: atob(""),
+      message: `template ${name} has been created`
+
+    }
+    this.http.put(`${this.baseUrlTemplates}/${name}.md`, newTemplate ).subscribe(()=>{
+      setTimeout(()=>{
+        this.loadTemplates()
+      },1000)
+    })
   }
 
-  loadReflist() {
-    this.http
-      .get<
-        TemplateReference[]
-      >("https://beginners-guide-for-ctf-default-rtdb.europe-west1.firebasedatabase.app/reflist.json")
-      .subscribe(refs => {
-        this.storedReflist = refs;
-        this.reflist$.next(refs);
-      });
+  getSingleTemplate(){
+    return this.singeTemplate$.asObservable()
   }
 
-  getReflist() {
-    return this.reflist$.asObservable();
-  }
-  getTemplate(): Observable<Template> {
+  getTemplates(): Observable<GH_Template[]> {
     return this.templates$.asObservable();
   }
 }
