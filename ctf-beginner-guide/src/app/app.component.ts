@@ -26,7 +26,7 @@ import { HttpClient } from "@angular/common/http";
     RouterLink,
     MatTabLink,
   ],
-  providers: [TemplateService, HttpClient],
+  providers: [ HttpClient],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
 })

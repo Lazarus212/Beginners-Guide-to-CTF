@@ -1,14 +1,66 @@
-<h1 class="mat-h1">Guide</h1>
-<mat-expansion-panel hideToggle>
+<h1 class="mat-h1" >Guide</h1>
+<span>Staring with CTFs can be quite overwhelming for new players. Having some reference points especially in the first few events can help to decrease the barrier for entry.
+<br>
+  It has to be said however that this guide can provide only reference points and not definite answers on what works best for you. Mostly everything surrounding CTF-Events is highly
+  subjective and dependent on personal preferences.
+</span>
+<br>
+<br>
+<mat-expansion-panel [expanded]="true">
   <mat-expansion-panel-header>
     <mat-panel-title>
       Selection Stage
     </mat-panel-title>
   </mat-expansion-panel-header>
-  <p>Test content</p>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header >
+      <mat-panel-title>tl:dr</mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>Choosing an event can be difficult and depends mostly on personal preference. However for the first or first few events the best way to go is choosing an event that fulfills the following criteria:</p>
+    <ul>
+      <li>Is held online</li>
+      <li>Has mostly tasks in a category that you like (e.g. Webexploitation)</li>
+      <li>Has a good rating from previous years (e.g. is not to difficult and has some easy tasks)</li>
+      <li>Optional: Is recommended by experienced players</li>
+    </ul>
+  </mat-expansion-panel>
+  <br>
+  <p>Choosing which event is the right one to start can be difficult. There are many CTFs that are not suited for beginners for many reasons.</p>
+  <h3 class="mat-h3" style="font-weight: bold">Selecting the right event</h3>
+  <p>An event can be broken down into three aspects:</p>
+ <ol>
+   <li>Where the event is being held</li>
+   <li>What is the main task category</li>
+   <li>What is the rating</li>
+ </ol>
+  <p>These aspects are not a definitive list on what to look for in events. There are different aspects that can be relevant, for example the date and length of an event.</p>
+  <h3 style="font-weight: bold">1. Where the event is being held</h3>
+  <p>Most of the events fall in one of two categories:</p>
+  <ol>
+    <li>Onsite events</li>
+    <li>Online events</li>
+  </ol>
+  <p>For beginners it is most likely the best option to choose an event that is held online as it doesn't require the commitment to travel somewhere.
+    <br>
+  Another point for online events is that they don't require a participation fee, at leas most of the times.
+    <br>
+    <br>
+  There are however scenarios where it can be a bonus to participate onsite, yet these are mostly when you have participated in at least one event and already know that CTFs are fun for you.</p>
+<p>A honorable mention for online CTFs is <a href="https://play.picoctf.org/login?redirect=/practice">picoCTFs picoGym</a> they provide a platform where every tasks of previous CTFs
+is playable at all times. This is a great place to see how tasks are structured and what a live CTF can look like</p>
+
+  <h3 style="font-weight: bold">2. What is the main task category</h3>
+ <p> There are many category in which a task can be placed, sometimes it is not clear in from which category it is as it combines mutliple categorys.
+   <br>
+ A great source to see the different categorys is <a href="https://ctf101.org/">ctf101</a>. There mostly every category can be found with some corresponding tasks and tools.
+   <br>
+   <br>
+ However in the events there are mostly not only tasks from one category but instead have a focus on some. Choosing the right category is something that everyone has to do for themselves.
+ There is no harder or easier category that can be recommended for starting, it always highly depends on your personal preference and/or experience. </p>
+  <p>A recommendation for finding a category you like is to look at the tasks in <a href="https://play.picoctf.org/login?redirect=/practice">picoCTFs picoGym</a> there most of the categories have at least one task. </p>
 </mat-expansion-panel>
 <br>
-<mat-expansion-panel>
+<mat-expansion-panel [expanded]="true">
   <mat-expansion-panel-header>
     <mat-panel-title>
       Preparation Stage
@@ -17,7 +69,7 @@
   <p>Test Content</p>
 </mat-expansion-panel>
 <br>
-<mat-expansion-panel>
+<mat-expansion-panel [expanded]="true">
   <mat-expansion-panel-header>
     <mat-panel-title>
       Playing Stage
@@ -26,7 +78,7 @@
   <p>Test Content</p>
 </mat-expansion-panel>
 <br>
-<mat-expansion-panel>
+<mat-expansion-panel [expanded]="true">
   <mat-expansion-panel-header>
     <mat-panel-title>
       Follow up Stage

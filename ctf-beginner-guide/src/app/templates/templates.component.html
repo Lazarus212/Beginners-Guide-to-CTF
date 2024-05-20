@@ -1,5 +1,10 @@
   <br>
-  <h1 class="mat-h1 margin-left-table">Overview of available templates</h1>
+  <div class="heading-table">
+  <h1 class="mat-h1 h1-template">Overview of available templates</h1>
+    <button mat-mini-fab class="refresh-button" matTooltip="Refresh table" color="primary" (click)="loadTemplates()">
+    <mat-icon>refresh</mat-icon>
+    </button>
+  </div>
   <table mat-table [dataSource]="templateList$" class="margin-left-table">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -9,27 +14,23 @@
       <th mat-header-cell *matHeaderCellDef>Size</th>
       <td mat-cell *matCellDef="let element">{{ element.size }}</td>
     </ng-container>
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>Edit</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" (click)="editTemplate(element.html_url)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColums"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColums" (click)="getSelectedTemplate(row.name)"></tr>
   </table>
-
-<br>
-<h2 class="mat-h2 margin-left-table" > Add new template</h2>
-<mat-form-field class="add-formfield">
-  <mat-label>Name</mat-label>
-  <input matInput (keyup.enter)="addNewTemplate()" [formControl]="newTemplateFormControl">
-</mat-form-field>
-<button #button mat-fab color="primary" matTooltip="Add new template" class="add-button" (click)="addNewTemplate()">
-<mat-icon>add</mat-icon>
-</button>
-
-<br>
-<!--<ng-container *ngIf="!(templateList$ | async)">-->
-<!--  <mat-card>-->
-<!--    <mat-card-header>No data available!</mat-card-header>-->
-<!--  </mat-card>-->
-<!--</ng-container>-->
-<br />
+    <button (click)="addTemplate()" mat-mini-fab matTooltip="Add new template" class="mat-mdc-mini-fab add-button" color="primary">
+      <mat-icon>add</mat-icon>
+    </button>
+  <br />
+  <br/>
 <ng-container *ngIf="template$|async as template">
-  <md-editor [(ngModel)]="template.content" [options]="editorOptions" ></md-editor>
+  <h1 class="mat-h1">Template Preview</h1>
+  <md-editor [hideToolbar]="true" mode="preview" height="fit-content" [(ngModel)]="template.content"></md-editor>
 </ng-container>

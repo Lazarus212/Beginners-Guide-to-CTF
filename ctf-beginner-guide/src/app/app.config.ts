@@ -1,12 +1,17 @@
-import { ApplicationConfig } from "@angular/core";
+import {APP_INITIALIZER, ApplicationConfig} from "@angular/core";
 import { provideRouter } from "@angular/router";
 
 import { routes } from "./app.routes";
 import { provideClientHydration } from "@angular/platform-browser";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
-import {provideHttpClient, withInterceptors} from "@angular/common/http";
-import {authInterceptor} from "./interceptors/auth.interceptor";
+import {provideHttpClient} from "@angular/common/http";
+import {TemplateService} from "./shared-services/template.service";
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(), provideAnimationsAsync(), provideHttpClient(withInterceptors([authInterceptor]))],
+  providers: [provideRouter(routes), provideClientHydration(), provideAnimationsAsync(), provideHttpClient(),{
+    provide:APP_INITIALIZER,
+    useFactory: ((templateService: TemplateService) => () => {templateService.loadTemplates()}),
+    deps:[TemplateService],
+    multi:true
+  }],
 };

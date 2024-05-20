@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from "@angular/core";
-import {MatButton, MatFabButton, MatIconButton} from "@angular/material/button";
+import {MatButton, MatFabButton, MatIconButton, MatMiniFabButton} from "@angular/material/button";
 import { TemplateService } from "../shared-services/template.service";
-import { LMarkdownEditorModule, MdEditorOption } from "ngx-markdown-editor";
 import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AsyncPipe, NgIf } from "@angular/common";
 import {
@@ -25,7 +24,9 @@ import {MatIcon} from "@angular/material/icon";
 import {MatTooltip} from "@angular/material/tooltip";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {LMarkdownEditorModule} from "ngx-markdown-editor";
+import {environments} from "eslint-plugin-prettier";
+import {environment} from "../../environments/environment";
 
 
 @Component({
@@ -35,7 +36,6 @@ import {MatSnackBar} from "@angular/material/snack-bar";
     MatButton,
     FormsModule,
     AsyncPipe,
-    LMarkdownEditorModule,
     NgIf,
     MatTable,
     MatColumnDef,
@@ -58,22 +58,21 @@ import {MatSnackBar} from "@angular/material/snack-bar";
     MatLabel,
     MatInput,
     ReactiveFormsModule,
+    LMarkdownEditorModule,
+    MatMiniFabButton,
   ],
   templateUrl: "./templates.component.html",
-  styleUrl: "./templates.component.scss",
+  styleUrl: "./templates.component.scss"
 })
 export class TemplatesComponent implements OnInit {
   private templatesService = inject(TemplateService);
-  private snackBar: MatSnackBar = inject(MatSnackBar);
 
   templateList$: Observable<GH_Template[]> = new Observable<GH_Template[]>();
   template$: Observable<GH_Template>;
-  displayedColums = ["name","size"]
+  displayedColums = ["name","size","edit"]
 
-  newTemplateFormControl = new FormControl<string|null>("")
-  editorOptions: MdEditorOption = {
-    resizable: true
-  };
+  addTemplateUrl = `https://github.com/${environment.owner}/${environment.repo}/tree/main/datastorage/templates`
+
 
   getSelectedTemplate(name:string) {
    this.templatesService.loadSingleTemplate(name)
@@ -83,25 +82,19 @@ export class TemplatesComponent implements OnInit {
     }))
   }
 
-  addNewTemplate(){
-    if (this.newTemplateFormControl.getRawValue()){
-      this.templatesService.addTemplate(this.newTemplateFormControl.getRawValue()!)
-      this.newTemplateFormControl.reset()
-    }
-    else {
-      this.snackBar.open("Please enter a name!","ok",{
-        horizontalPosition:"center",
-        verticalPosition:"top",
-      })
-    }
+  loadTemplates(){
+    this.templatesService.loadTemplates()
   }
 
-   clickUploadButton() {
+  editTemplate(url:string){
+    window.open(url,"_blank")
+  }
 
+  addTemplate(){
+    window.open(this.addTemplateUrl,"_blank")
   }
 
   ngOnInit() {
-     this.templatesService.loadTemplates();
      this.templateList$ = this.templatesService.getTemplates().pipe(map(templates =>{
       templates.forEach(template =>{
         template.name = template.name.replace(".md","")
