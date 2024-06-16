@@ -17,9 +17,9 @@ export class TemplateService {
 
 
   loadTemplates(){
-    // this.http.get<GH_Template[]>(this.baseUrlTemplates).subscribe((templates)=>{
-    //   this.templates$.next(templates)
-    // });
+    this.http.get<GH_Template[]>(this.baseUrlTemplates).subscribe((templates)=>{
+      this.templates$.next(templates)
+    });
   }
 
   loadSingleTemplate(name:string){

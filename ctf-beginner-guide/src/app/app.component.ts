@@ -35,8 +35,7 @@ export class AppComponent implements OnInit {
 
   title = "ctf-beginner-guide";
   routes: { label: string; route: string }[] = [
-    { label: "Home", route: "" },
-    { label: "Guide", route: "guide" },
+    { label: "Guide", route: "" },
     { label: "Templates", route: "templates" },
   ];
   activeLink = "";
