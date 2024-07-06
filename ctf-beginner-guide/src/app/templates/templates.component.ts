@@ -24,7 +24,7 @@ import {MatIcon} from "@angular/material/icon";
 import {MatTooltip} from "@angular/material/tooltip";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
-import {LMarkdownEditorModule} from "ngx-markdown-editor";
+import {LMarkdownEditorModule, MdEditorOption} from "ngx-markdown-editor";
 import {environments} from "eslint-plugin-prettier";
 import {environment} from "../../environments/environment";
 
@@ -70,6 +70,14 @@ export class TemplatesComponent implements OnInit {
   templateList$: Observable<GH_Template[]> = new Observable<GH_Template[]>();
   template$: Observable<GH_Template>;
   displayedColums = ["name","size","edit"]
+
+  mdEditorOptions: MdEditorOption = {
+    usingFontAwesome5:true,
+    fontAwesomeVersion:"5",
+  markedjsOpt:{
+    gfm:true
+  }
+  }
 
   addTemplateUrl = `https://github.com/${environment.owner}/${environment.repo}/tree/main/datastorage/templates`
 

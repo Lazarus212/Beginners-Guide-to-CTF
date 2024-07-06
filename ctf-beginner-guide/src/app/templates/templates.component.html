@@ -34,6 +34,6 @@
   <hr>
   <h1 class="mat-h1 template-header">{{template.name.replace(".md","").toLocaleUpperCase("de-DE")}}</h1>
   <div class="editor">
-  <md-editor class="editor" [hideToolbar]="true" mode="preview" height="fit-content" [(ngModel)]="template.content"></md-editor>
+  <md-editor [options]="mdEditorOptions" class="editor" [hideToolbar]="true" mode="preview" height="fit-content" [(ngModel)]="template.content"></md-editor>
   </div>
 </ng-container>
