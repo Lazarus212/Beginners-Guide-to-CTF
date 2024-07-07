@@ -88,6 +88,7 @@ Solving for the flag in relatively simple scenarios:
    - **Example**:
      ```python
      from sympy import integer_nthroot
+     from Crypto.Util.number import long_to_bytes
 
      e = 3
      n = 3233
