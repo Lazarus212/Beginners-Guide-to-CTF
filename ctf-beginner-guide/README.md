@@ -6,22 +6,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+# Forking the Repository 
+When the repository is forked the environment variables have to be exchanged to the new URL and repository owner.
+This has to be done in the `enironment.ts` and the `environment.development.ts` file.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+There the `owner`, `repo` and `baseURL` have to be exchanged.
 
-## Build
+If the repository structure is modified the links for loading the templates have to be adjusted. This can be done in the `template.service.ts` file.
+Additionally the addTemplatesUrl has to be adjusted in the `templates.component.ts`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Note:
+If these variables don't get changed the application will still function, however the displayed templates will remain from the original repository. 
